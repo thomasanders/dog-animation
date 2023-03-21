@@ -10,7 +10,7 @@ const CANVAS_WIDTH = canvas.width = 600;
 const CANVAS_HEIGHT = canvas.height = 600;
 
 const playerImage = new Image();
-playerImage.src = 'shadow_dog.png';
+playerImage.src = "shadow_dog.png";
 const spriteWidth = 575;
 const spriteHeight = 523;
 
@@ -18,14 +18,14 @@ const spriteHeight = 523;
 
 let gameFrame = 0;
 const staggerFrames = 5;
-const spiteAnimations = [];
+const spriteAnimations = [];
 const animationStates = [
     {
         name: 'idle',
         frames: 7,
     },
     {
-        name: 'idle',
+        name: 'jump',
         frames: 7,
     },
     {
@@ -61,7 +61,7 @@ const animationStates = [
         frames: 4,
     }
 ];
-animationStates.ferEach((state, index) =>{
+animationStates.forEach((state, index) => {
     let frames = {
         loc: [],
     }
@@ -70,7 +70,7 @@ animationStates.ferEach((state, index) =>{
         let positionY = index * spriteHeight;
         frames.loc.push({x: positionX, y: positionY});
     }
-    spiteAnimations[state.name] = frames;
+    spriteAnimations[state.name] = frames;
 });
 console.log(animationStates);
 
@@ -78,7 +78,7 @@ console.log(animationStates);
 
 function animate(){
     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-    let position = Math.floor(gameFrame/staggerFrames) % spiteAnimations[playerState].loc; // here is frame function, not eally understand it :D
+    let position = Math.floor(gameFrame/staggerFrames) % spriteAnimations[playerState].loc.length; // here is frame function, not eally understand it :D
     let frameX = spriteWidth * position;
     let frameY = spriteAnimations[playerState].loc[position].y;
 
