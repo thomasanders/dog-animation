@@ -4,15 +4,23 @@ const CANVAS_WIDTH = canvas.width = 600;
 const CANVAS_HEIGHT = canvas.height = 600;
 
 const playerImage = new Image();
-playerImage.src = "shadow_dog.png";
+playerImage.src = "css/shadow_dog.png";
+const spriteWidth = 575;
+const spriteHeight = 523;
+let frameX = 0;
+let frameY = 0;
+let gameFrame = 0;
+const staggerFrames = 5;
+
 //let x =0;
 
 function animate(){
     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-    //ctx.fillRect(x, 50, 100, 100);
-    //x++;
-    //ctx.drawimage(image, sx, sy, sw, sh, dx, dy, dw, dh)
-    ctx.drawImage(playerImage, 0, 0, 600, 600, 0 ,0 , CANVAS_WIDTH, CANVAS_HEIGHT);
+    let position = Math.floor(gameFrame/staggerFrames) % 6; // here is frame function,
+    ctx.drawImage(playerImage, frameX * spriteWidth, frameY * spriteHeight, spriteWidth, spriteHeight, 0, 0, spriteWidth, spriteHeight);
+  
+
+    gameFrame++;
     requestAnimationFrame(animate);
 };
 animate();
